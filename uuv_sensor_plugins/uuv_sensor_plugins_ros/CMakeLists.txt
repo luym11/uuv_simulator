@@ -6,7 +6,9 @@ set(CMAKE_BUILD_TYPE RelWithDebInfo)
 find_package(catkin REQUIRED uuv_gazebo_plugins sensor_msgs uuv_sensor_plugins
                              uuv_sensor_plugins_ros_msgs)
 find_package(Boost REQUIRED COMPONENTS system)                             
-find_package(Eigen3 REQUIRED)
+#find_package(Eigen3 REQUIRED)
+find_package(PkgConfig)
+pkg_search_module(Eigen3 REQUIRED eigen3)
 find_package(gazebo REQUIRED)
 
 catkin_package(
@@ -31,6 +33,7 @@ include_directories(
   ${Boost_INCLUDE_DIR}
   ${EIGEN3_INCLUDE_DIR}
   ${GAZEBO_INCLUDE_DIRS}
+  ${Eigen_INCLUDE_DIRS}
 )
 
 link_directories(

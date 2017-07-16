@@ -6,7 +6,9 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 find_package(catkin REQUIRED)
 find_package(gazebo REQUIRED)
 find_package(Boost REQUIRED COMPONENTS system)
-find_package(Eigen3 REQUIRED)
+#find_package(Eigen3 REQUIRED)
+find_package(PkgConfig)
+pkg_search_module(Eigen3 REQUIRED eigen3)
 find_package(Protobuf REQUIRED)
 
 file(MAKE_DIRECTORY ${PROJECT_BINARY_DIR}/msgs)
@@ -55,7 +57,8 @@ include_directories(${PROJECT_SOURCE_DIR}/include
                     ${catkin_INCLUDE_DIRS}
                     ${GAZEBO_INCLUDE_DIRS}
                     ${GAZEBO_MSG_INCLUDE_DIRS}
-                    ${EIGEN3_INCLUDE_DIRS})
+                    ${EIGEN3_INCLUDE_DIRS}
+		    ${Eigen_INCLUDE_DIRS})
 
 link_directories(${EIGEN3_LIBRARY_DIRS} ${GAZEBO_LIBRARY_DIRS})
 

@@ -8,7 +8,8 @@ set (CMAKE_DIR ${PROJECT_SOURCE_DIR}/cmake CACHE PATH "Location of CMake scripts
 # include(${CMAKE_DIR}/FindOGRE.cmake)
 
 find_package(catkin REQUIRED)
-find_package(Eigen3 REQUIRED)
+find_package(PkgConfig)
+pkg_search_module(Eigen3 REQUIRED eigen3)
 find_package(gazebo REQUIRED)
 find_package(OGRE REQUIRED)
 find_package(OpenCV REQUIRED)
@@ -72,6 +73,7 @@ include_directories(
   ${CMAKE_CURRENT_BINARY_DIR}
   ${OGRE_INCLUDE_DIRS}
   ${OGRE_Paging_INCLUDE_DIRS}
+  ${Eigen_INCLUDE_DIRS}
 )
 
 link_directories(${GAZEBO_LIBRARY_DIRS})
