@@ -23,4 +23,14 @@ roslaunch uuv_gazebo rexrov_default_logitech_joy.launch joy_id:=0 namespace:=rex
 		<arg name="namespace" value="rexrov1"/>
 	</include>
 	
+	<!-- Start the dp_controller -->
+	<include file="$(find multiagent_simulation)/launch/dp_controller.launch">
+		<arg name="uuv_name" value="rexrov2"/>
+		<arg name="model_name" value="rexrov"/>
+	</include>
+
+<!--
+roslaunch uuv_control_utils send_waypoints_file.launch uuv_name:=rexrov2
+-->
+
 </launch>
