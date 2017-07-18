@@ -5,15 +5,15 @@ set(CMAKE_BUILD_TYPE RelWithDebInfo)
 
 find_package(catkin REQUIRED uuv_gazebo_plugins sensor_msgs uuv_sensor_plugins
                              uuv_sensor_plugins_ros_msgs)
-<<<<<<< HEAD
+
 find_package(Boost REQUIRED COMPONENTS system)                             
 #find_package(Eigen3 REQUIRED)
 find_package(PkgConfig)
 pkg_search_module(Eigen3 REQUIRED eigen3)
-=======
+
 find_package(Boost REQUIRED COMPONENTS system)
-find_package(Eigen3 REQUIRED)
->>>>>>> 9cc04a5f5d876b6a7af60f82a94ec353490e8a52
+# find_package(Eigen3 REQUIRED)
+
 find_package(gazebo REQUIRED)
 
 set(uuv_sensor_plugins_list "")

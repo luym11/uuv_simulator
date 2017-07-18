@@ -30,6 +30,7 @@ roslaunch uuv_gazebo rexrov_default_logitech_joy.launch joy_id:=0 namespace:=rex
 	</include>
 
 <!--
+for a pre-generated traj
 roslaunch uuv_control_utils send_waypoints_file.launch uuv_name:=rexrov2
 -->
 
