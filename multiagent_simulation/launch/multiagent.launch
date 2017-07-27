@@ -1,38 +1,48 @@
 <launch>
 <!--
-launch a world first!! 
+launch a world first!! Now using lake.launch in multirov
 roslaunch uuv_descriptions empty_underwater_world.launch 
 -->
+
+
 
 <!-- 
 roslaunch uuv_descriptions upload_rexrov.launch mode:=default x:=0 y:=0 z:=-20 namespace:=rexrov1
 roslaunch uuv_descriptions upload_rexrov.launch mode:=default x:=10 y:=10 z:=-20 namespace:=rexrov2
 roslaunch uuv_gazebo rexrov_default_logitech_joy.launch joy_id:=0 namespace:=rexrov1
 -->
-	<include file="$(find uuv_descriptions)/models/rexrov/launch/upload_rexrov.launch">
-		<arg name="x" value="0"/>
-		<arg name="y" value="0"/>
-		<arg name="z" value="-20"/>
-		<arg name="namespace" value="rexrov1"/>
-	</include>
+<include file="$(find uuv_descriptions)/models/rexrov/launch/upload_rexrov.launch">
+	<arg name="x" value="0"/>
+	<arg name="y" value="0"/>
+	<arg name="z" value="-20"/>
+	<arg name="namespace" value="rexrov1"/>
+</include>
 
-	<include file="$(find uuv_descriptions)/models/rexrov/launch/upload_rexrov.launch">
-		<arg name="x" value="10"/>
-		<arg name="y" value="10"/>
-		<arg name="z" value="-20"/>
-		<arg name="namespace" value="rexrov2"/>
-	</include>
+<include file="$(find uuv_descriptions)/models/rexrov/launch/upload_rexrov.launch">
+	<arg name="x" value="10"/>
+	<arg name="y" value="10"/>
+	<arg name="z" value="-20"/>
+	<arg name="namespace" value="rexrov2"/>
+</include>
 
-	<include file="$(find multiagent_simulation)/launch/joystick.launch">
-		<arg name="joy_id" value="0"/>
-		<arg name="namespace" value="rexrov1"/>
-	</include>
-	
-	<!-- Start the dp_controller -->
-	<include file="$(find multiagent_simulation)/launch/dp_controller.launch">
-		<arg name="uuv_name" value="rexrov2"/>
-		<arg name="model_name" value="rexrov"/>
-	</include>
+
+
+<!-- Start the dp_controller -->
+<include file="$(find multiagent_simulation)/launch/dp_controller.launch">
+	<arg name="uuv_name" value="rexrov2"/>
+	<arg name="model_name" value="rexrov"/>
+</include>
+
+
+<include file="$(find multiagent_simulation)/launch/joystick.launch">
+	<arg name="joy_id" value="0"/>
+	<arg name="namespace" value="rexrov1"/>
+</include>
+
+<param name="robot_description" command="$(find xacro)/xacro.py '$(find uuv_descriptions)/models/rexrov/robots/rexrov_default.xacro'" />
+  <group if="$(arg launch_rviz)">
+    <node name="rviz" pkg="rviz" type="rviz" output="screen" args="-d $(find multiagent_simulation)/rviz/urdf.rviz"/>
+  </group>
 
 <!--
 for a pre-generated traj
@@ -50,6 +60,16 @@ rosservice call /rexrov2/go_to "waypoint:
   max_forward_speed: 1.0
   heading_offset: 0.0
   use_fixed_heading: false" 
+-->
+
+
+<!--
+launch a robot_state_publisher
+
+<node pkg="robot_state_publisher" type="robot_state_publisher" name="rob_st_pub1" >
+ 	<remap from="joint_states" to="/rexrov1/joint_states" />
+</node>
+
 -->
 
 </launch>

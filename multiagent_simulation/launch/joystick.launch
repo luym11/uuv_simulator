@@ -60,8 +60,5 @@
     <arg name="axis_z" value="$(arg axis_z)"/>
   </include>
 
-  <group if="$(arg launch_rviz)">
-    <node name="rviz" pkg="rviz" type="rviz" output="screen" args="-d $(find uuv_gazebo)/rviz/rexrov_default.rviz"/>
-  </group>
 
 </launch>
