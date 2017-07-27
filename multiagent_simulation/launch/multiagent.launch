@@ -34,17 +34,6 @@ roslaunch uuv_gazebo rexrov_default_logitech_joy.launch joy_id:=0 namespace:=rex
 </include>
 
 
-<include file="$(find multiagent_simulation)/launch/joystick.launch">
-	<arg name="joy_id" value="0"/>
-	<arg name="namespace" value="rexrov1"/>
-</include>
-
-<arg name="launch_rviz" default="1"/>
-<param name="robot_description" command="$(find xacro)/xacro.py '$(find uuv_descriptions)/models/rexrov/robots/rexrov_default.xacro'" />
-<group if="$(arg launch_rviz)">
-	<node name="rviz" pkg="rviz" type="rviz" output="screen" args="-d $(find multiagent_simulation)/rviz/urdf.rviz"/>
-</group>
-
 <!--
 for a pre-generated traj
 roslaunch uuv_control_utils send_waypoints_file.launch uuv_name:=rexrov2
@@ -72,5 +61,31 @@ launch a robot_state_publisher
 </node>
 
 -->
+
+<!--
+launch a movable urdf with gazebo visuai plugin, and use joystick to control it
+-->
+<include file="$(find multirov)/models/rexrov/launch/upload_rexrov.launch">
+	<arg name="x" value="20"/>
+	<arg name="y" value="30"/>
+	<arg name="z" value="-40"/>
+	<arg name="namespace" value="rexrov0"/>
+	<arg name="mode" value="resource"/>
+</include>
+
+<!-- joy stick node -->
+<include file="$(find multiagent_simulation)/launch/joystick.launch">
+	<arg name="joy_id" value="0"/>
+	<arg name="namespace" value="rexrov0"/>
+</include>
+
+
+<!-- RViz node -->
+<arg name="launch_rviz" default="1"/>
+<param name="robot_description" command="$(find xacro)/xacro.py '$(find uuv_descriptions)/models/rexrov/robots/rexrov_default.xacro'" />
+<group if="$(arg launch_rviz)">
+	<node name="rviz" pkg="rviz" type="rviz" output="screen" args="-d $(find multiagent_simulation)/rviz/urdf.rviz"/>
+</group>
+
 
 </launch>
