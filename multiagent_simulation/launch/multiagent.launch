@@ -41,9 +41,9 @@ roslaunch uuv_gazebo rexrov_default_logitech_joy.launch joy_id:=0 namespace:=rex
 
 <arg name="launch_rviz" default="1"/>
 <param name="robot_description" command="$(find xacro)/xacro.py '$(find uuv_descriptions)/models/rexrov/robots/rexrov_default.xacro'" />
-  <group if="$(arg launch_rviz)">
-    <node name="rviz" pkg="rviz" type="rviz" output="screen" args="-d $(find multiagent_simulation)/rviz/urdf.rviz"/>
-  </group>
+<group if="$(arg launch_rviz)">
+	<node name="rviz" pkg="rviz" type="rviz" output="screen" args="-d $(find multiagent_simulation)/rviz/urdf.rviz"/>
+</group>
 
 <!--
 for a pre-generated traj
