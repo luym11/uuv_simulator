@@ -21,11 +21,16 @@ roslaunch uuv_gazebo rexrov_default_logitech_joy.launch joy_id:=0 namespace:=rex
 <include file="$(find multirov)/models/rexrov/launch/upload_rexrov.launch">
 	<arg name="x" value="10"/>
 	<arg name="y" value="10"/>
-	<arg name="z" value="-20"/>
+	<arg name="z" value="-30"/>
 	<arg name="namespace" value="rexrov2"/>
 </include>
 
-
+<include file="$(find multirov)/models/rexrov/launch/upload_rexrov.launch">
+	<arg name="x" value="20"/>
+	<arg name="y" value="10"/>
+	<arg name="z" value="-10"/>
+	<arg name="namespace" value="rexrov3"/>
+</include>
 
 <!-- Start the dp_controller -->
 
@@ -39,6 +44,10 @@ roslaunch uuv_gazebo rexrov_default_logitech_joy.launch joy_id:=0 namespace:=rex
 	<arg name="model_name" value="rexrov"/>
 </include>
 
+<include file="$(find multiagent_simulation)/launch/dp_controller.launch">
+	<arg name="uuv_name" value="rexrov3"/>
+	<arg name="model_name" value="rexrov"/>
+</include>
 
 <!--
 for a pre-generated traj
