@@ -14,7 +14,7 @@ roslaunch uuv_gazebo rexrov_default_logitech_joy.launch joy_id:=0 namespace:=rex
 <include file="$(find multirov)/models/rexrov/launch/upload_rexrov.launch">
 	<arg name="x" value="1"/>
 	<arg name="y" value="1"/>
-	<arg name="z" value="-20"/>
+	<arg name="z" value="-10"/>
 	<arg name="namespace" value="rexrov1"/>
 </include>
 
@@ -28,7 +28,7 @@ roslaunch uuv_gazebo rexrov_default_logitech_joy.launch joy_id:=0 namespace:=rex
 <include file="$(find multirov)/models/rexrov/launch/upload_rexrov.launch">
 	<arg name="x" value="1"/>
 	<arg name="y" value="8"/>
-	<arg name="z" value="-20"/>
+	<arg name="z" value="-30"/>
 	<arg name="namespace" value="rexrov3"/>
 </include>
 
@@ -83,7 +83,7 @@ launch a movable urdf with gazebo visuai plugin, and use joystick to control it
 <include file="$(find multirov)/models/rexrov/launch/upload_rexrov.launch">
 	<arg name="x" value="5"/>
 	<arg name="y" value="5"/>
-	<arg name="z" value="-30"/>
+	<arg name="z" value="-40"/>
 	<arg name="namespace" value="rexrov0"/>
 	<arg name="mode" value="resource"/>
 </include>
@@ -99,7 +99,7 @@ launch a movable urdf with gazebo visuai plugin, and use joystick to control it
 <include file="$(find multirov)/models/rexrov/launch/upload_rexrov.launch">
 	<arg name="x" value="3"/>
 	<arg name="y" value="4"/>
-	<arg name="z" value="-30"/>
+	<arg name="z" value="-40"/>
 	<arg name="namespace" value="rexrov00"/>
 	<arg name="mode" value="resource"/>
 </include>
