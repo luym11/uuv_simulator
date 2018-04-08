@@ -95,6 +95,20 @@ launch a movable urdf with gazebo visuai plugin, and use joystick to control it
 </include>
 
 
+<!-- static resource -->
+<include file="$(find multirov)/models/rexrov/launch/upload_rexrov.launch">
+	<arg name="x" value="3"/>
+	<arg name="y" value="4"/>
+	<arg name="z" value="-30"/>
+	<arg name="namespace" value="rexrov00"/>
+	<arg name="mode" value="resource"/>
+</include>
+
+<include file="$(find multiagent_simulation)/launch/joystick.launch">
+	<arg name="joy_id" value="1"/>
+	<arg name="namespace" value="rexrov00"/>
+</include>
+
 <!-- RViz node -->
 <arg name="launch_rviz" default="1"/>
 <param name="robot_description" command="$(find xacro)/xacro.py '$(find uuv_descriptions)/models/rexrov/robots/rexrov_default.xacro'" />
